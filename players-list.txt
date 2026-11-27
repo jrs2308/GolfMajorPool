@@ -1,0 +1,24 @@
+Scottie Scheffler,Hideki Matsuyama,Robert MacIntyre,Dustin Johnson,Jason Day
+Bryson DeChambeau,Harris English,Matt Fitzpatrick,Cameron Smith,Sungjae Im
+Rory McIlroy,Joaquín Niemann,Patrick Cantlay,Patrick Reed,Keegan Bradley
+Xander Schauffele,Tommy Fleetwood,Corey Conners,Denny McCarthy,Aaron Rai
+Viktor Hovland,Shane Lowry,Sam Burns,Justin Rose,Tony Finau,Maverick McNealy
+Jon Rahm,Justin Thomas,Ben Griffin,Russell Henley,Tyrrell Hatton,Brian Harman
+Ludvig Åberg,Collin Morikawa,Brooks Koepka,Sepp Straka,Jordan Spieth
+
+
+Rory McIlroy,Joaquín Niemann,Tyrrell Hatton,Russell Henley,Cameron Smith,Keith Mitchell
+Bryson DeChambeau,Patrick Cantlay,Sepp Straka,Sungjae Im,Min Woo Lee,Denny McCarthy
+Ludvig Åberg,Shane Lowry,Justin Rose,Jason Day,Hideki Matsuyama,Si Woo Kim
+Xander Schauffele,Brooks Koepka,Akshay Bhatia,Jordan Spieth,Mackenzie Hughes,Will Zalatoris
+Jon Rahm,Collin Morikawa,Sam Burns,Daniel Berger,Max Homa,J.T. Poston,Tiger Woods
+
+Nicolai Højgaard
+J.J. Spaun
+Ryan Fox
+Chris Gotterup
+Louis Oosthuizen
+Nick Taylor
+Collin Morikawa
+Russell Henley
+Justin Rose

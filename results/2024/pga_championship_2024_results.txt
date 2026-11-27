@@ -1,0 +1,56 @@
+[
+    {
+        "TEAM": "Meaghan",
+        "Scottie Scheffler": "-13",
+        "Collin Morikawa": "-15",
+        "Joaquín Niemann": "-7",
+        "Justin Thomas": "-13",
+        "Dean Burmester": "-12",
+        "TOP_3_SCORE": "-41"
+    },
+    {
+        "TEAM": "Justin",
+        "Rory McIlroy": "-12",
+        "Cameron Smith": "-3",
+        "Byeong Hun An": "-6",
+        "Tyrrell Hatton": "-3",
+        "Sepp Straka": "CUT",
+        "TOP_3_SCORE": "-21"
+    },
+    {
+        "TEAM": "Josh",
+        "Brooks Koepka": "-9",
+        "Bryson DeChambeau": "-20",
+        "Will Zalatoris": "-6",
+        "Cameron Young": "-3",
+        "Matt Fitzpatrick": "CUT",
+        "TOP_3_SCORE": "-35"
+    },
+    {
+        "TEAM": "Bret",
+        "Xander Schauffele": "-21",
+        "Jon Rahm": "CUT",
+        "Patrick Cantlay": "-5",
+        "Jason Day": "-6",
+        "Justin Rose": "-14",
+        "TOP_3_SCORE": "-41"
+    },
+    {
+        "TEAM": "Kelsey",
+        "Ludvig Åberg": "CUT",
+        "Wyndham Clark": "CUT",
+        "Tommy Fleetwood": "-9",
+        "Akshay Bhatia": "CUT",
+        "Corey Conners": "-9",
+        "TOP_3_SCORE": "-18"
+    },
+    {
+        "TEAM": "Dusty",
+        "Viktor Hovland": "-18",
+        "Max Homa": "-8",
+        "Hideki Matsuyama": "-8",
+        "Sahith Theegala": "-12",
+        "Tiger Woods": "CUT",
+        "TOP_3_SCORE": "-38"
+    }
+]

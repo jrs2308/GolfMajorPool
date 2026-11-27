@@ -1,0 +1,72 @@
+[
+    {
+        "TEAM": "Kelsey",
+        "Scottie Scheffler": "-8",
+        "Patrick Cantlay": "+2",
+        "Min Woo Lee": "+6",
+        "Cameron Smith": "CUT",
+        "Justin Rose": "-11",
+        "Wyndham Clark": "+5",
+        "TOP_3_SCORE": "-17"
+    },
+    {
+        "TEAM": "Dusty",
+        "Rory McIlroy": "-11",
+        "Hideki Matsuyama": "-2",
+        "Cameron Young": "CUT",
+        "Sahith Theegala": "E",
+        "Sam Burns": "+5",
+        "Nicolai Højgaard": "CUT",
+        "TOP_3_SCORE": "-13"
+    },
+    {
+        "TEAM": "Meaghan",
+        "Collin Morikawa": "-3",
+        "Jordan Spieth": "-3",
+        "Robert MacIntyre": "CUT",
+        "Corey Conners": "-5",
+        "Phil Mickelson": "CUT",
+        "Dustin Johnson": "CUT",
+        "TOP_3_SCORE": "-11"
+    },
+    {
+        "TEAM": "Josh",
+        "Ludvig Åberg": "-6",
+        "Brooks Koepka": "CUT",
+        "Shane Lowry": "+4",
+        "Tyrrell Hatton": "-3",
+        "Tony Finau": "CUT",
+        "Keegan Bradley": "CUT",
+        "TOP_3_SCORE": "-5"
+    },
+    {
+        "TEAM": "Justin",
+        "Jon Rahm": "-3",
+        "Justin Thomas": "+2",
+        "Joaquín Niemann": "E",
+        "Will Zalatoris": "CUT",
+        "Sergio Garcia": "CUT",
+        "J.J. Spaun": "+7",
+        "TOP_3_SCORE": "-1"
+    },
+    {
+        "TEAM": "Brett C",
+        "Bryson DeChambeau": "-7",
+        "Tommy Fleetwood": "-2",
+        "Patrick Reed": "-9",
+        "Sepp Straka": "CUT",
+        "Adam Scott": "CUT",
+        "Jason Day": "-5",
+        "TOP_3_SCORE": "-21"
+    },
+    {
+        "TEAM": "Bret N",
+        "Xander Schauffele": "-5",
+        "Viktor Hovland": "-2",
+        "Russell Henley": "CUT",
+        "Akshay Bhatia": "+4",
+        "Billy Horschel": "CUT",
+        "Brian Harman": "+2",
+        "TOP_3_SCORE": "-5"
+    }
+]

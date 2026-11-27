@@ -1,0 +1,18 @@
+{
+    "masters": {
+        "winner": "Scottie Scheffler",
+        "event_id": "401580344"
+    },
+    "pga_championship": {
+        "winner": "Xander Schauffele",
+        "event_id": "401580351"
+    },
+    "us_open": {
+        "winner": "Bryson DeChambeau",
+        "event_id": "401580355"
+    },
+    "open_championship": {
+        "winner": "Xander Schauffele",
+        "event_id": "401580360"
+    }
+}

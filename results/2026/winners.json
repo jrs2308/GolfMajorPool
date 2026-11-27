@@ -1,0 +1,18 @@
+{
+    "masters": {
+        "winner": "Rory McIlroy",
+        "event_id": "401811941"
+    },
+    "pga_championship": {
+        "winner": "Aaron Rai",
+        "event_id": "401811947"
+    },
+    "us_open": {
+        "winner": "Wyndham Clark",
+        "event_id": "401811952"
+    },
+    "open_championship": {
+        "winner": "Ryan Fox",
+        "event_id": "401811957"
+    }
+}

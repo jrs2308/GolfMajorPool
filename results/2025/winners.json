@@ -1,0 +1,18 @@
+{
+    "masters": {
+        "winner": "Rory McIlroy",
+        "event_id": "401703504"
+    },
+    "pga_championship": {
+        "winner": "Scottie Scheffler",
+        "event_id": "401703511"
+    },
+    "us_open": {
+        "winner": "J.J. Spaun",
+        "event_id": "401703515"
+    },
+    "open_championship": {
+        "winner": "Scottie Scheffler",
+        "event_id": "401703521"
+    }
+}
