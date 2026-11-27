@@ -5,6 +5,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import ssl
 import sys
 import time
@@ -15,6 +16,7 @@ from datetime import datetime
 
 import certifi
 
+import build_site
 import render_results
 import payouts
 import season_standings
@@ -189,6 +191,24 @@ def copy_to_google_drive(file_name, drive_folder, year):
     return dest
 
 
+def publish_site(event_name):
+    """Commit docs/ (only) and push so GitHub Pages picks up the new standings."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    git = lambda *a: subprocess.run(["git", "-C", here, *a], capture_output=True, text=True)
+    git("add", "--", build_site.SITE_DIR)
+    if git("diff", "--cached", "--quiet", "--", build_site.SITE_DIR).returncode == 0:
+        log("Website unchanged - nothing to push")
+        return
+    msg = f"Update standings: {event_name} ({datetime.now():%b %-d %-I:%M %p})"
+    r = git("commit", "-q", "-m", msg, "--", build_site.SITE_DIR)
+    if r.returncode:
+        raise RuntimeError(f"git commit failed: {r.stderr.strip()}")
+    r = git("push", "-q")
+    if r.returncode:
+        raise RuntimeError(f"git push failed: {r.stderr.strip()}")
+    log("Pushed website to GitHub")
+
+
 def run_once(args):
     """One update cycle. Returns True when the tournament is final."""
     if args.leaderboard_file:
@@ -253,6 +273,14 @@ def run_once(args):
             log(f"Wrote {payouts_file}")
         except Exception as e:
             log(f"ERROR rendering payouts: {e}")
+
+    # Website (docs/index.html, served by GitHub Pages); pushed to GitHub unless --no-upload
+    try:
+        log(f"Wrote {build_site.build()}")
+        if not args.no_upload:
+            publish_site(event.get("name", "standings"))
+    except Exception as e:
+        log(f"ERROR building/publishing website (local files still written): {e}")
 
     if not args.no_upload:
         uploads = [f for f in (image_file, season_file, payouts_file) if f]

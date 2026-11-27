@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golf Majors Pool</title>
+<meta name="description" content="Standings, winners, payouts and season standings for the golf majors pool.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f5135'/><path d='M24 52V12l20 9-20 9' fill='none' stroke='%23c9a227' stroke-width='5' stroke-linejoin='round'/></svg>">
+<style>
+:root {
+  --green: #1f5135; --green-2: #2c6b48; --green-tint: #e8f1ea;
+  --gold: #c9a227; --gold-tint: #f7efd2; --silver: #9aa3ab; --bronze: #b0723f;
+  --bg: #eef1ec; --card: #ffffff; --line: #d9dfd9; --alt: #f5f7f4; --cut: #eceeed;
+  --ink: #1d2420; --muted: #6f7973; --under: #c0392b; --pos: #1f7a46;
+  --head-ink: #ffffff; --head-sub: #cfe0d4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --green: #1b4a30; --green-2: #2f7a52; --green-tint: #1d3527;
+    --gold-tint: #3a3218; --bg: #121614; --card: #1b211e; --line: #2c3530; --alt: #202724;
+    --cut: #1a1f1c; --ink: #e7ece8; --muted: #93a098; --under: #ff7a6b; --pos: #5fd394;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink);
+  font: 15px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-variant-numeric: tabular-nums; }
+header { background: var(--green); color: var(--head-ink); border-bottom: 5px solid var(--gold); }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+.brand { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 18px 0 10px; }
+.brand h1 { margin: 0; font-size: 22px; letter-spacing: .2px; }
+.brand .sub { color: var(--head-sub); font-size: 12px; text-align: right; }
+nav.years, nav.sections, nav.majors { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav.years { padding-bottom: 12px; }
+nav a { text-decoration: none; white-space: nowrap; }
+nav.years a { color: var(--head-sub); padding: 6px 14px; border-radius: 999px; font-weight: 600; font-size: 14px; }
+nav.years a.on { background: var(--gold); color: #1d2420; }
+nav.years { align-items: center; }
+nav.years select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 14px; font-weight: 600;
+  color: var(--head-sub); background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23cfe0d4' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 5px 30px 5px 14px; cursor: pointer; }
+nav.years select.on { background-color: var(--gold); color: #1d2420; border-color: var(--gold);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231d2420' stroke-width='1.6'/%3E%3C/svg%3E"); }
+nav.years select option { color: #1d2420; background: #fff; }
+td.proj b { color: var(--muted); }
+td.proj .sm { font-style: italic; }
+th .live { display: block; font-size: 9.5px; color: var(--under); letter-spacing: .4px; }
+.callout { background: var(--card); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; color: var(--muted); font-size: 13px; margin-top: 8px; }
+nav.sections { border-bottom: 1px solid var(--line); margin: 14px 0 16px; }
+nav.sections a { color: var(--muted); padding: 10px 12px; font-weight: 600; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+nav.sections a.on { color: var(--ink); border-bottom-color: var(--gold); }
+nav.majors { margin-bottom: 14px; }
+nav.majors a { color: var(--ink); background: var(--card); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+nav.majors a.on { background: var(--green); border-color: var(--green); color: #fff; }
+main { padding-bottom: 40px; }
+h2 { font-size: 20px; margin: 0 0 2px; }
+.meta { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; vertical-align: 2px; margin-left: 6px; }
+.pill.live { background: var(--under); color: #fff; }
+.pill.final { background: var(--green-tint); color: var(--green-2); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; }
+.team { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 12px; padding: 12px; align-items: center; }
+.team.m1 { border: 2px solid var(--gold); } .team.m2 { border: 2px solid var(--silver); } .team.m3 { border: 2px solid var(--bronze); }
+.who { display: flex; align-items: center; gap: 12px; }
+.badge { flex: none; width: 42px; height: 42px; border-radius: 50%; background: var(--green-2); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 15px; }
+.m1 .badge, .badge.m1 { background: var(--gold); } .m2 .badge, .badge.m2 { background: var(--silver); } .m3 .badge, .badge.m3 { background: var(--bronze); }
+.name { font-weight: 700; font-size: 17px; }
+.total { font-weight: 800; font-size: 20px; }
+.note { color: var(--muted); font-size: 12px; font-weight: 500; margin-left: 4px; }
+.golfers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.g { display: flex; justify-content: space-between; gap: 6px; padding: 7px 10px; border-radius: 8px; background: var(--alt); font-size: 13.5px; border: 1.5px solid transparent; min-width: 0; }
+.g .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.g .s { font-weight: 700; flex: none; }
+.g.counts { background: var(--green-tint); border-color: var(--green-2); }
+.g.counts .n { font-weight: 700; }
+.g.out { background: var(--cut); color: var(--muted); }
+.under { color: var(--under); } .muted { color: var(--muted); }
+.legend { color: var(--muted); font-size: 12px; display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+.legend i { display: inline-block; width: 18px; height: 11px; border-radius: 3px; background: var(--green-tint); border: 1.5px solid var(--green-2); vertical-align: -1px; margin-right: 4px; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); padding: 10px 12px; font-weight: 700; }
+td { padding: 12px; border-top: 1px solid var(--line); }
+th.r, td.r { text-align: right; } th.c, td.c { text-align: center; }
+td .sm { display: block; font-size: 11.5px; color: var(--muted); }
+td.win { background: var(--gold-tint); }
+.big { font-weight: 800; font-size: 18px; }
+.pos { color: var(--pos); } .neg { color: var(--under); }
+.scroll { overflow-x: auto; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.wcard { padding: 14px; }
+.wcard h3 { margin: 0 0 10px; font-size: 15px; }
+.kv { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.kv:first-of-type { border-top: 0; }
+.kv span:first-child { color: var(--muted); }
+.kv b { text-align: right; }
+.champ { background: var(--green); color: #fff; border-radius: 14px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 4px solid var(--gold); }
+.champ small { color: var(--head-sub); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.champ strong { font-size: 22px; }
+.section-title { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 700; margin: 22px 0 8px; }
+.rules { color: var(--muted); font-size: 12.5px; margin-top: 10px; }
+footer { color: var(--muted); font-size: 12px; text-align: center; padding: 20px 16px 30px; }
+@media (max-width: 720px) {
+  .team { grid-template-columns: minmax(0, 1fr); }
+  .golfers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g { font-size: 12.5px; padding: 6px 8px; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .brand { flex-direction: column; gap: 2px; }
+  .brand .sub { text-align: left; }
+  .brand h1 { font-size: 19px; }
+  nav.sections a { padding: 10px 9px; font-size: 14.5px; }
+  td, th { padding: 9px 6px; }
+  th { font-size: 10px; letter-spacing: .2px; }
+  .season .badge { display: none; }
+  .season td .sm { font-size: 10.5px; }
+  .big { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><h1>⛳ Golf Majors Pool</h1><div class="sub" id="built"></div></div>
+    <nav class="years" id="years"></nav>
+  </div>
+</header>
+<div class="wrap">
+  <nav class="sections" id="sections"></nav>
+  <main id="main"></main>
+</div>
+<footer>Best <span id="r-count"></span> golfer scores count · cut = +<span id="r-cut"></span> · 4+ cut = N/A</footer>
+
+<script>
+const DATA = /*__DATA__*/null;
+const SECTIONS = [["leaderboards", "Leaderboards"], ["winners", "Winners"], ["payouts", "Payouts"], ["season", "Season"]];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function money(x, sign) {
+  let s = "$" + Math.abs(x).toLocaleString(undefined, {minimumFractionDigits: x % 1 ? 2 : 0, maximumFractionDigits: 2});
+  if (sign) s = (x > 0 ? "+" : x < 0 ? "−" : "") + s;
+  return s;
+}
+const pts = (p) => Number.isInteger(p) ? String(p) : p.toFixed(1);
+function ordinal(place) {
+  const tie = place.startsWith("T"), n = parseInt(place.replace("T", ""), 10);
+  const suf = (n % 100 >= 10 && n % 100 <= 20) ? "th" : ({1: "st", 2: "nd", 3: "rd"}[n % 10] || "th");
+  return (tie ? "T" : "") + n + suf;
+}
+function scoreClass(v) {
+  const u = String(v || "").toUpperCase();
+  if (["CUT","WD","DQ","MC","DNS","N/A","N/F",""].includes(u)) return "muted";
+  return u !== "E" && parseInt(u, 10) < 0 ? "under" : "";
+}
+const medal = (rank) => { const n = parseInt(String(rank).replace("T", ""), 10); return n <= 3 ? "m" + n : ""; };
+const when = (iso) => new Date(iso).toLocaleString(undefined, {month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit"});
+
+function route() {
+  const [y, s, m] = decodeURIComponent(location.hash.slice(1)).split("/");
+  const year = DATA.years.find((d) => d.year === y) || DATA.years[0];
+  const section = SECTIONS.some(([k]) => k === s) ? s : "leaderboards";
+  const major = year.majors.find((x) => x.slug === m) || year.majors[year.majors.length - 1];
+  return {year, section, major};
+}
+
+function render() {
+  const {year, section, major} = route();
+  const current = DATA.years[0], past = DATA.years.slice(1);
+  $("years").innerHTML =
+    `<a href="#${current.year}/${section}" class="${year === current ? "on" : ""}">${current.year} Season</a>` +
+    (past.length ? `<select id="past" aria-label="Past seasons" class="${year !== current ? "on" : ""}">
+      <option value="" ${year === current ? "selected" : ""} disabled>Past seasons</option>
+      ${past.map((d) => `<option value="${d.year}" ${d === year ? "selected" : ""}>${d.year} Season</option>`).join("")}
+    </select>` : "");
+  const sel = $("past");
+  if (sel) sel.onchange = () => { location.hash = `${sel.value}/${section}`; };
+  $("sections").innerHTML = SECTIONS.map(([k, label]) =>
+    `<a href="#${year.year}/${k}" class="${k === section ? "on" : ""}">${label}</a>`).join("");
+  const views = {leaderboards: viewLeaderboard, winners: viewWinners, payouts: viewPayouts, season: viewSeason};
+  $("main").innerHTML = views[section](year, major);
+  document.title = `${year.year} ${SECTIONS.find(([k]) => k === section)[1]} · Golf Majors Pool`;
+}
+
+function viewLeaderboard(year, major) {
+  const chips = year.majors.map((m) =>
+    `<a href="#${year.year}/leaderboards/${m.slug}" class="${m === major ? "on" : ""}">${esc(m.short)}</a>`).join("");
+  const status = major.final ? `<span class="pill final">Final</span>` : `<span class="pill live">In progress</span>`;
+  const cards = major.teams.map((t) => `
+    <div class="card team ${medal(t.rank)}">
+      <div class="who">
+        <div class="badge">${esc(t.rank)}</div>
+        <div><div class="name">${esc(t.team)}</div>
+          <div><span class="total ${scoreClass(t.total)}">${esc(t.total)}</span>${t.tiebreak ? `<span class="note">tiebreak: best ${esc(t.tiebreak)}</span>` : ""}</div></div>
+      </div>
+      <div class="golfers">${t.golfers.map((g) => `
+        <div class="g ${g.counts ? "counts" : ""} ${g.out ? "out" : ""}" title="${esc(g.name)}">
+          <span class="n">${g.champ ? "🏆 " : ""}${esc(g.name)}</span><span class="s ${scoreClass(g.score)}">${esc(g.score)}</span></div>`).join("")}
+      </div>
+    </div>`).join("");
+  return `<nav class="majors">${chips}</nav>
+    <h2>${esc(major.name)} ${year.year}${status}</h2>
+    <div class="meta">${major.winner ? `Won by ${esc(major.winner)} · ` : ""}Updated ${when(major.updated)}</div>
+    ${cards}
+    <div class="legend"><span><i></i>counts toward team total</span><span class="under">red = under par</span><span>🏆 tournament winner</span></div>`;
+}
+
+function viewWinners(year) {
+  const champ = year.season.rows.filter((r) => r.place === 1).map((r) => r.team).join(" & ");
+  const champBox = `<div class="champ"><div><small>${year.season.complete ? "Season champion" : "Season leader"}</small>
+      <strong>${esc(champ)}</strong></div><div class="big">${pts(year.season.rows[0].total)} pts</div></div>`;
+  const cards = year.majors.map((m) => {
+    const leader = m.teams.filter((t) => t.rank === m.teams[0].rank);
+    const rows = m.final ? `
+      <div class="kv"><span>Pool winner</span><b>${esc(m.payout.low_teams.join(" & ") || "—")} <span class="${scoreClass(leader[0].total)}">${esc(leader[0].total)}</span></b></div>
+      <div class="kv"><span>Tournament winner</span><b>${esc(m.winner)}</b></div>
+      <div class="kv"><span>Drafted by</span><b>${esc(m.payout.owner || "Nobody")}</b></div>` : `
+      <div class="kv"><span>Leading</span><b>${esc(leader.map((t) => t.team).join(" & "))} <span class="${scoreClass(leader[0].total)}">${esc(leader[0].total)}</span></b></div>
+      <div class="kv"><span>Status</span><b>In progress</b></div>`;
+    return `<div class="card wcard"><h3>${esc(m.name)}</h3>${rows}</div>`;
+  }).join("");
+
+  // All-time pool major wins across every year
+  const tally = {};
+  for (const y of DATA.years) for (const m of y.majors) if (m.final)
+    for (const t of m.payout.low_teams) (tally[t] = tally[t] || []).push(`${y.year} ${m.short}`);
+  const allTime = Object.entries(tally).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  const seasonChamps = DATA.years.filter((y) => y.season.complete)
+    .map((y) => `<div class="kv"><span>${y.year}</span><b>${esc(y.season.rows.filter((r) => r.place === 1).map((r) => r.team).join(" & "))}</b></div>`).join("");
+  return `${champBox}<div class="grid2">${cards}</div>
+    <div class="section-title">All-time</div>
+    <div class="grid2">
+      <div class="card wcard"><h3>Season champions</h3>${seasonChamps || '<div class="muted">None yet</div>'}</div>
+      <div class="card wcard"><h3>Major wins</h3>${allTime.map(([t, w]) =>
+        `<div class="kv"><span title="${esc(w.join(", "))}">${esc(t)}</span><b>${w.length}</b></div>`).join("")}</div>
+    </div>`;
+}
+
+function viewPayouts(year) {
+  const majors = year.majors.map((m) => {
+    if (!m.final) return `<tr><td><b>${esc(m.short)}</b></td><td colspan="2" class="muted">In progress — paid out when final</td><td class="r">${money(m.payout.pot)}</td></tr>`;
+    const low = m.payout.low_teams;
+    const sweep = m.payout.owner && low.length === 1 && low[0] === m.payout.owner;
+    const lowAmt = low.length ? m.payout.won[low[0]] : 0;
+    const gw = sweep ? `${esc(m.payout.owner)} — included in sweep`
+      : m.payout.owner ? `${esc(m.payout.owner)} gets ${money(DATA.buyIn)} back` : "Not drafted";
+    return `<tr><td><b>${esc(m.short)}</b></td>
+      <td><b>${esc(low.join(" & "))}</b><span class="sm">${money(lowAmt)}${low.length > 1 ? " each" : ""}${sweep ? " — sweep!" : ""}</span></td>
+      <td>${esc(m.winner)}<span class="sm">${gw}</span></td>
+      <td class="r">${money(m.payout.pot)}</td></tr>`;
+  }).join("");
+  const live = year.majors.filter((m) => !m.final);
+  const anyFinal = year.majors.some((m) => m.final);
+  const season = !anyFinal ? "" : year.payouts.map((r) => `<tr><td><b>${esc(r.team)}</b></td>
+      <td class="r muted">${money(r.paid)}</td><td class="r">${money(r.won)}</td>
+      <td class="r big ${r.net > 0 ? "pos" : r.net < 0 ? "neg" : "muted"}">${money(r.net, true)}</td></tr>`).join("");
+  return `<h2>${year.year} Payouts</h2><div class="meta">${money(DATA.buyIn)} buy-in per major</div>
+    <div class="section-title">Season net</div>
+    ${season ? `<div class="card"><table><thead><tr><th>Team</th><th class="r">Paid in</th><th class="r">Won</th><th class="r">Net</th></tr></thead><tbody>${season}</tbody></table></div>` : ""}
+    ${live.length ? `<div class="callout">${esc(live.map((m) => m.short).join(" & "))} in progress — not counted until it's final.</div>` : ""}
+    <div class="section-title">By major</div>
+    <div class="card scroll"><table><thead><tr><th>Major</th><th>Lowest score</th><th>Winning golfer</th><th class="r">Pot</th></tr></thead><tbody>${majors}</tbody></table></div>
+    <div class="rules">Winning golfer's team gets ${money(DATA.buyIn)} back · lowest combined score gets the rest (tiebreak: lowest-scoring golfer) · both = whole pot</div>`;
+}
+
+function viewSeason(year) {
+  const s = year.season;
+  const head = s.majors.map((m, i) => `<th class="c">${esc(m)}${s.final[i] ? "" : `<span class="live">Live</span>`}</th>`).join("");
+  const rows = s.rows.map((r) => `<tr>
+      <td><div class="who"><div class="badge ${medal(r.rank)}" style="width:34px;height:34px;font-size:13px">${esc(r.rank)}</div>
+        <div><b>${esc(r.team)}</b>${r.wins ? `<span class="sm" style="color:var(--gold);font-weight:700">${r.wins} win${r.wins > 1 ? "s" : ""}</span>` : ""}</div></div></td>
+      ${r.cells.map((c, i) => !c ? `<td class="c muted">—</td>`
+        : s.final[i] ? `<td class="c ${c[1] === "1" ? "win" : ""}"><b>${pts(c[0])}</b><span class="sm">${ordinal(c[1])}</span></td>`
+        : `<td class="c proj"><b>${pts(c[0])}</b><span class="sm">proj. ${ordinal(c[1])}</span></td>`).join("")}
+      <td class="r big" style="color:var(--green-2)">${pts(r.total)}</td></tr>`).join("");
+  const nFinal = s.final.filter(Boolean).length, nLive = s.final.length - nFinal;
+  const played = (s.complete && !nLive ? "All 4 majors" : `${nFinal} of 4 majors final`) +
+    (nLive ? ` · grey = projected from the live leaderboard` : "");
+  return `<h2>${year.year} Season Standings</h2><div class="meta">Points by finish · ${played}</div>
+    <div class="card scroll season"><table><thead><tr><th>Team</th>${head}<th class="r">Points</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="rules">Each major: last = 1 pt, +1 per place · ties split points · N/A = tied for last · gold = major winner · season tiebreak: most wins</div>`;
+}
+
+$("built").textContent = "Updated " + when(DATA.built);
+$("r-count").textContent = DATA.counting;
+$("r-cut").textContent = DATA.cutPenalty;
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>

@@ -142,11 +142,10 @@ def compute(year):
         for team, amount in p["won"].items():
             name = ss.TEAM_ALIASES.get(team, team)
             s = season.setdefault(name, {"paid": 0, "won": 0.0})
-            s["paid"] += BUY_IN
+            # A major in progress isn't counted at all until it's final (no buy-in, no payout)
             if final:
+                s["paid"] += BUY_IN
                 s["won"] += amount
-            else:  # tournament still in progress: buy-in is paid, nothing awarded yet
-                pass
     rows = sorted(({"team": t, **v, "net": v["won"] - v["paid"]} for t, v in season.items()),
                   key=lambda r: (-r["net"], r["team"]))
     return majors, rows

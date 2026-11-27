@@ -67,6 +67,15 @@ def major_points(teams):
     return out
 
 
+def final_slugs(year):
+    """Majors that are over: a tournament winner is recorded in winners.json when it goes final."""
+    try:
+        with open(os.path.join(RESULTS_DIR, str(year), "winners.json"), encoding="utf-8") as f:
+            return set(json.load(f))
+    except FileNotFoundError:
+        return set()
+
+
 def compute(year):
     majors = find_majors(year)
     if not majors:
@@ -76,12 +85,15 @@ def compute(year):
         with open(path, encoding="utf-8") as f:
             per_major.append((slug, major_points(json.load(f))))
 
+    finals = final_slugs(year)
     teams = sorted({t for _, res in per_major for t in res})
     rows = []
     for team in teams:
         cells = [res.get(team) for _, res in per_major]
         total = sum(c[0] for c in cells if c)
-        wins = sum(1 for c in cells if c and c[1] == "1")
+        # Only finished majors count as wins; an in-progress lead is just projected
+        wins = sum(1 for c, (slug, _) in zip(cells, per_major)
+                   if c and c[1] == "1" and slug in finals)
         rows.append({"team": team, "cells": cells, "total": total, "wins": wins})
     # Rank by points; tiebreaker = most outright major wins; still tied -> share the place
     key = lambda r: (-r["total"], -r["wins"])

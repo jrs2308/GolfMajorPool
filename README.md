@@ -38,3 +38,12 @@ Results (.txt) and standings images (.png) are saved locally to `results/<year>/
 is copied into the Google Drive for desktop folder `~/Library/CloudStorage/GoogleDrive-*/My Drive/GolfMajorPool/<year>/`, and Drive syncs them.
 Google Drive for desktop must be running and signed in. Override the folder with `--drive-folder`.
 No API credentials are needed.
+
+## Website
+`build_site.py` turns everything in `results/` into one page, `docs/index.html`, with tabs for
+each year: leaderboards, winners, payouts and season standings. Each scoring update rebuilds it.
+GitHub Pages serves it from the `docs/` folder on `main`. After each update the scorer commits and pushes
+`docs/` only (skipped with `--no-upload`), so the live site follows the tournament. Look/layout lives in `site_template.html`.
+```
+python3 build_site.py && open docs/index.html   # rebuild and preview locally
+```
