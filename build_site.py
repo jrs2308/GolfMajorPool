@@ -12,6 +12,7 @@ import json
 import os
 from datetime import datetime
 
+import details
 import payouts
 import render_results as rr
 import season_standings as ss
@@ -27,6 +28,7 @@ def years():
 
 
 def leaderboard(path, winner):
+    extra = details.load(path)
     with open(path, encoding="utf-8") as f:
         teams = sorted(json.load(f), key=rr.sort_value)
     labels = rr.ranks(teams)
@@ -47,6 +49,7 @@ def leaderboard(path, winner):
                 "counts": i in counting,
                 "out": (val or "").upper() in rr.OUT_MARKS,
                 "champ": bool(winner) and payouts._norm(name) == payouts._norm(winner),
+                **{k: v for k, v in extra.get(name, {}).items() if k in ("pos", "thru", "today")},
             } for i, (name, val) in enumerate(golfers)],
         })
     return out

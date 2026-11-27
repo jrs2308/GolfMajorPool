@@ -47,3 +47,8 @@ GitHub Pages serves it from the `docs/` folder on `main`. After each update the 
 ```
 python3 build_site.py && open docs/index.html   # rebuild and preview locally
 ```
+Each update also saves `<major>_<year>_details.json` (position, holes played, today's round per
+golfer) for the site's leaderboard. To backfill final positions for past majors from ESPN:
+```
+python3 details.py 2024 2025 2026
+```

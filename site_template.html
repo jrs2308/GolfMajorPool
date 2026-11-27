@@ -73,6 +73,9 @@ h2 { font-size: 20px; margin: 0 0 2px; }
 .g { display: flex; justify-content: space-between; gap: 6px; padding: 7px 10px; border-radius: 8px; background: var(--alt); font-size: 13.5px; border: 1.5px solid transparent; min-width: 0; }
 .g .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .g .s { font-weight: 700; flex: none; }
+.g { flex-wrap: wrap; row-gap: 1px; }
+.g .d { flex-basis: 100%; font-size: 11.5px; color: var(--muted); font-weight: 500; }
+.g .d .under { font-weight: 600; }
 .g.counts { background: var(--green-tint); border-color: var(--green-2); }
 .g.counts .n { font-weight: 700; }
 .g.out { background: var(--cut); color: var(--muted); }
@@ -182,6 +185,15 @@ function render() {
   document.title = `${year.year} ${SECTIONS.find(([k]) => k === section)[1]} · Golf Majors Pool`;
 }
 
+function detailLine(g, final) {
+  if (g.out) return "";
+  const parts = [];
+  if (g.pos) parts.push(final ? `Finished ${esc(g.pos)}` : esc(g.pos));
+  if (!final && g.thru) parts.push(g.thru === "F" ? "F" : /^\d+$/.test(g.thru) ? `thru ${esc(g.thru)}` : esc(g.thru));
+  if (!final && g.today) parts.push(`today <span class="${scoreClass(g.today)}">${esc(g.today)}</span>`);
+  return parts.length ? `<span class="d">${parts.join(" · ")}</span>` : "";
+}
+
 function viewLeaderboard(year, major) {
   const chips = year.majors.map((m) =>
     `<a href="#${year.year}/leaderboards/${m.slug}" class="${m === major ? "on" : ""}">${esc(m.short)}</a>`).join("");
@@ -195,7 +207,7 @@ function viewLeaderboard(year, major) {
       </div>
       <div class="golfers">${t.golfers.map((g) => `
         <div class="g ${g.counts ? "counts" : ""} ${g.out ? "out" : ""}" title="${esc(g.name)}">
-          <span class="n">${g.champ ? "🏆 " : ""}${esc(g.name)}</span><span class="s ${scoreClass(g.score)}">${esc(g.score)}</span></div>`).join("")}
+          <span class="n">${g.champ ? "🏆 " : ""}${esc(g.name)}</span><span class="s ${scoreClass(g.score)}">${esc(g.score)}</span>${detailLine(g, major.final)}</div>`).join("")}
       </div>
     </div>`).join("");
   return `<nav class="majors">${chips}</nav>

@@ -17,6 +17,7 @@ from datetime import datetime
 import certifi
 
 import build_site
+import details
 import render_results
 import payouts
 import season_standings
@@ -240,6 +241,11 @@ def run_once(args):
     with open(file_name, mode="w", encoding="utf-8") as out:
         json.dump(results, out, ensure_ascii=False, indent=4)
     log(f"Wrote {file_name}")
+    # Position / thru / today's round per golfer, for the website
+    try:
+        details.write(file_name, event)
+    except Exception as e:
+        log(f"ERROR writing golfer details (results file still written): {e}")
     # Only the standings image goes to Google Drive; the .txt results stay local.
     image_file = None
     if args.image == "png":
